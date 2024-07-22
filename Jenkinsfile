@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Run composer install using Windows batch command
-                bat 'C:\\xampp\\php\\php.exe composer install'
+                bat 'C:\\xampp\\php\\php.exe  C:\\Users\\h20ch\\composer.phar install'
             }
         }
         stage('Test') {
