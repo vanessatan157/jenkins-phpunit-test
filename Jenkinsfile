@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run PHPUnit tests using Windows batch command
-                bat 'vendor\\bin\\phpunit --log-junit logs\\unitreport.xml -c tests\\phpunit.xml tests'
+                bat 'C:\\xampp\\php\\php.exe vendor\\bin\\phpunit --log-junit logs\\unitreport.xml -c tests\\phpunit.xml tests'
             }
         }
     }
