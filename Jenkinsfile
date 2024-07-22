@@ -1,24 +1,23 @@
 pipeline {
-	agent {
-		docker {
-			image 'composer:latest'
-		}
-	}
-	stages {
-		stage('Build') {
-			steps {
-				sh 'composer install'
-			}
-		}
-		stage('Test') {
-			steps {
-                sh './vendor/bin/phpunit --log-junit logs/unitreport.xml -c tests/phpunit.xml tests'
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                // Run composer install using Windows batch command
+                bat 'composer install'
             }
-		}
-	}
-	post {
-		always {
-			junit testResults: 'logs/unitreport.xml'
-		}
-	}
+        }
+        stage('Test') {
+            steps {
+                // Run PHPUnit tests using Windows batch command
+                bat './vendor/bin/phpunit --log-junit logs\\unitreport.xml -c tests\\phpunit.xml tests'
+            }
+        }
+    }
+    post {
+        always {
+            // Publish the test results
+            junit testResults: 'logs\\unitreport.xml'
+        }
+    }
 }
